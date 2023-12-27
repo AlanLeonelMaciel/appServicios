@@ -1,8 +1,15 @@
-
-# Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-# Click nbfs://nbhost/SystemFileSystem/Templates/Other/Dockerfile to edit this template
-
+# Utiliza la imagen base de OpenJDK 17
 FROM openjdk:17
-expose 8080
-add ./docker-spring-boot.jar docker-spring-boot.jar
-ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
+
+# Copia el JAR de la aplicación al contenedor
+COPY ./docker-spring-boot.jar /app/docker-spring-boot.jar
+
+# Añade wait-for-it
+ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
+
+# Expone el puerto 8080
+EXPOSE 8080
+
+# Comando para esperar a que la base de datos esté disponible y luego ejecutar la aplicación
+CMD ["/app/wait-for-it.sh", "monorail.proxy.rlwy.net:56078", "--timeout=30", "--", "java", "-jar", "/app/docker-spring-boot.jar"]
