@@ -1,0 +1,84 @@
+<div class="container justify-content-center">
+    <div>
+        <h5 class="text-color" style="margin-top: 1rem;">Lista Usuarios</h5>
+    </div>
+    <div class="row justify-content-center">
+
+        <table class=" table table-borderless table-hover table-striped table-dark table-limit">
+
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">
+                    <div class="d-flex justify-content-center">
+                        Estado
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody th:each="user : ${userList}">
+            <tr class="p-4">
+
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.rol}"></td>
+                <td>
+                    <!-- MODIFIQUÉ EN ESTA LÍNEA EL TH:IF PORQUE ME ROMPÍA LA PÁGINA LA LÓGICA th:if="${user.rol == T(com.ServiceMatch.SM.enums.RolEnum).PROVEEDOR}" -->
+                    <a th:if="${#strings.equals(user.rol, T(com.ServiceMatch.SM.enums.RolEnum).PROVEEDOR.name())}" class="btn btn-success btn-sm"
+                       th:href="@{/imagen/mostrar-imagen/__${user.id}__}" target="_blank">Ver</a>
+                </td>
+                <!-- dtype,registration_date,whats_app me dan error al traerlos -->
+                <td>
+                    <!--Si está dado de baja: Boton para RESTAURAR-->
+                    <a th:if="${!(user.active)}" class="btn btn-secondary btn-sm" th:href="@{/user/restore/__${user.id}__}">Restaurar</a>
+                    <!--Si está dado de alta: Boton para EDITAR-->
+                    <a th:if="${user.active}" class="btn btn-success btn-sm" th:href="@{/user/modify/__${user.id}__}">Editar</a>
+                    <a class="btn btn-rojo btn-sm" th:href="@{/user/delete/__${user.id}__}">Eliminar</a>
+                </td>
+                <td th:if="${user.active}" th:href="@{https://fontawesome.com/icons/circle-check?f=classic&s=regular&an=beat-fade&sz=2xs&pc=%23f56349}">
+                    <div class="d-flex justify-content-center">
+
+                        <i class="fa-regular fa-circle-check fa-beat-fade fa-2x " style="color: #1f9327;"></i>
+                    </div>
+                </td>
+                <td th:unless="${user.active}"
+                    th:href="@{https://fontawesome.com/icons/circle-check?f=classic&s=regular&an=beat-fade&sz=2xs&pc=%23f56349}">
+                    <div class="d-flex justify-content-center">
+
+                        <i class="fa-regular fa-circle-xmark fa-2x" style="color: #f56349;"></i>
+                    </div>
+                </td>
+
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Verifica si hay datos antes de mostrar la paginación -->
+    <div th:if="${not #lists.isEmpty(userList)}">
+        <!-- Agrega la paginación -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center pagination-dark">
+                <li th:class="${currentPage == 0 ? 'page-item disabled' : 'page-item'}">
+                    <a class="page-link b-paginacion" th:href="@{/user/list(page=0)}">First</a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:class="${currentPage == i ? 'page-item active' : 'page-item'}">
+                    <a class="page-link num-paginacion" th:href="@{/suser/list(page=${i})}" th:text="${i + 1}"></a>
+                </li>
+                <li th:class="${currentPage == totalPages - 1 ? 'page-item disabled' : 'page-item'}"><a class="page-link b-paginacion"
+                                                                                                        th:href="@{/user/list(page=${totalPages - 1})}">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div th:if="${#lists.isEmpty(userList)}">
+    </div>
+
+</div>

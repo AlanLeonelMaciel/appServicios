@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+input::placeholder {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+textarea::placeholder {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+option::placeholder {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+select::placeholder {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+.text-color {
+    color: #F56349;
+}
+
+.logo-color {
+    color: #FFFFFF;
+}
+
+.navbar {
+    background-color: #191A1F;
+}
+
+.navbar-brand {
+    margin-left: 150px;
+}
+
+.navbar-nav {
+    margin-right: 110px;
+}
+
+.nav-link.custom-link {
+    margin-right: 40px;
+    text-shadow: 1px 1px black;
+    color: aliceblue;
+}
+
+
+.nav-link.custom-link.naranja {
+    color: #F56349;
+}
+
+.nav-link.custom-link.naranja:hover {
+    color: #b14330;
+}
+
+.nav-link.custom-link:hover {
+    color: #F56349;
+}
+
+.dropdown-menu {
+    background-color: #191A1F;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: #191A1F;
+}
+
+#fondoProvDetails {
+    background: linear-gradient(rgba(9, 9, 10, 0.6), rgba(19, 20, 22, 0.6)), url(/img/fondo1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#fondoRating {
+    background: linear-gradient(rgba(9, 9, 10, 0.6), rgba(19, 20, 22, 0.6)), url(/img/fondo2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bg-califf {
+    background: linear-gradient(90deg,
+            rgba(245, 99, 72, 1) 0%,
+            rgba(245, 140, 32, 1) 100%);
+    ;
+}
+
+.list-comments {
+    max-height: 25em;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #F56349
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #24272E;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #424344;
+    border-radius: 5px;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+#header {
+    background: linear-gradient(rgba(29, 30, 35, 0.6),
+            rgba(29, 30, 35, 0.6)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: 80px 0 0 0;
+}
+
+.titulo-h1 {
+    font-size: 50px;
+    text-shadow: 1px 1px black;
+}
+
+.descripcion-p {
+    font-size: 18px;
+    text-shadow: 1px 1px black;
+}
+
+
+.btnOrigin {
+    background: linear-gradient(90deg,
+            rgba(245, 99, 72, 1) 0%,
+            rgba(245, 140, 32, 1) 100%);
+    width: 15rem;
+}
+
+.btnbuscar {
+    background: linear-gradient(90deg,
+            rgba(245, 99, 72, 1) 0%,
+            rgba(245, 140, 32, 1) 100%);
+    color: white !important;
+    width: auto;
+
+}
+
+.cardIndex {
+    width: 18rem;
+    margin: 1em;
+}
+
+.card-img-top {
+    width: fit-content !important;
+    margin: 1em auto 0 auto !important;
+}
+
+.cardCalif {
+    font-size: 1rem !important;
+}
+
+.rating {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.star.selected {
+    color: #ffc107;
+}
+
+.btn-rojo {
+    background: linear-gradient(90deg,
+            rgba(255, 0, 0, 1) 0%,
+            rgba(255, 100, 100, 1) 100%);
+    width: 15rem;
+}
+
+.custom-dropdown-hover:hover {
+    background-color: #343a40 !important;
+}
+
+
+.b-paginacion {
+    /*Estilos de los botones de la paginacion */
+    border-color: rgba(245, 140, 32, 1) !important;
+    color: white !important;
+    background-color: #212529 !important;
+}
+
+.num-paginacion {
+    /*estilo de los numeros de paginacion */
+    background-color: rgba(245, 140, 32, 1) !important;
+    border-color: #212529 !important;
+    border-radius: 2px !important;
+}
+
+.section-container {
+    background-color: #24272E;
+}
+
+.section-container-dos {
+    background-color: #191A1F;
+    padding-bottom: 30px;
+}
+
+.table-limit {
+    max-width: 45rem;
+}
+
+.border-card {
+    box-shadow: 0 0 8px rgba(245, 140, 32, 1) !important;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.text-slide-left {
+    animation: slideInLeft 3s forwards;
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.text-slide-top {
+    animation: slideInTop 2s forwards;
+}
+
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+
+.carousel-control-prev.corousel-flecha {
+    left: -100px;
+}
+
+.carousel-control-next.corousel-flecha {
+    right: -100px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #24272E;
+}
+
+.contact {
+    padding: 100px 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url(/img/celular-2.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contact-content {
+    text-align: center;
+}
+
+
+
+
+.mapa {
+    padding: 25px;
+    text-align: center;
+    background-color: #24272E;
+}
+
+.mapa-container {
+    background-color: #191A1F;
+    max-width: 100%;
+    height: 380px;
+    margin: 25px auto;
+    overflow: hidden;
+}
+
+.mapa-container iframe {
+    width: 100%;
+    height: 375px;
+    padding: 50px 100px;
+}
+
+.group {
+    color: #F56349;
+}
+
+footer {
+    background-color: #191A1F;
+    padding: 5px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright {
+    margin: 5px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.footer-content a {
+    margin: 5px;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+}
+
+.social-icons a {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.home-link {
+    font-size: 20px;
+    color: #D4D4D4;
+    display: block;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px black;
+}
+
+.home-link:hover {
+    color: #F56349;
+}
+
+
+a.link-colors {
+    text-decoration: none;
+    color: #F56349;
+    font-size: 17px;
+}
+
+a.link-colors:hover {
+    color: #b14330;
+}
+
+
+.card.cardjobs {
+    background-color: rgb(255, 127, 0);
+}
+
+.bodyRegistrarOficio {
+    background: linear-gradient(rgba(29, 30, 35, 0.6),
+            rgba(29, 30, 35, 0.6)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+
+.formularioRegistrarOficio {
+    padding: 50px;
+    height: 330px;
+    position: static;
+}
+
+
+.bodyCreateJob {
+    background: linear-gradient(rgba(29, 30, 35, 0.3),
+            rgba(29, 30, 35, 0.3)),
+        url(/img/derechos-trabajadores-turnos.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.formularioCreateJob {
+    /* padding: 50px; */
+    height: 100%;
+    position: static;
+}
+
+.bodyActualizarOficio {
+    background: linear-gradient(rgba(29, 30, 35, 0.6),
+            rgba(29, 30, 35, 0.6)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: 80px 0 0 0;
+}
+
+
+.formularioActualizarOficio {
+    padding: 50px;
+    height: 400px;
+    position: static;
+}
+
+.bodyActualizarNombreUsuario {
+    background: linear-gradient(rgba(29, 30, 35, 0.6),
+            rgba(29, 30, 35, 0.6)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: 80px 0 0 0;
+}
+
+.formularioActualizarNombreUser {
+    padding: 50px;
+    height: 350px;
+    position: static;
+}
+
+.bg-color {
+    background-color: #24272E;
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.bodyRegister {
+    background: linear-gradient(rgba(29, 30, 35, 0.6),
+            rgba(29, 30, 35, 0.6)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: 80px 0 0 0;
+}
+
+.formularioRegisterPrincipal {
+    padding: 50px;
+    position: static;
+}
+
+.bodyLogin {
+    background: linear-gradient(rgba(29, 30, 35, 0.3),
+            rgba(29, 30, 35, 0.3)),
+        url(/img/derechos-trabajadores-turnos.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.formularioLogin {
+    padding: 50px;
+    height: 420px;
+    position: static;
+}
+
+.formulario {
+    padding: 50px;
+    height: 740px;
+    position: static;
+}
+
+.bodyEditarPerfilProvider {
+    background: linear-gradient(rgba(29, 30, 35, 0.2),
+            rgba(29, 30, 35, 0.2)),
+        url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.formularioEditarPerfilProvider {
+    padding: 50px;
+    position: static;
+}
+
+.scroll-container {
+    max-height: 640px;
+    overflow-y: auto;
+}
+
+.bodyUserList {
+    background: linear-gradient(rgba(9, 9, 10, 0.2),
+            rgba(13, 13, 15, 0.2)),
+        url(/img/1287690.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fondoOpaco {
+    background-color: rgba(12, 11, 11, 0.671) !important
+}
+
+.tablaUserList {
+    padding: 60px;
+}
+
+.img-perfilproveedor {
+    max-width: 8em;
+}

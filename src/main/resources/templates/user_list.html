@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- Se incorporó el uso de thymeleaf y spring-security -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<!--Traigo el  Fragmento del head-->
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+
+<body id="page-top" class="d-flex flex-column min-vh-100 bodyUserList">
+    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <main class="container justify-content-center ">
+        <div th:replace="@{/fragments/thmsg} :: div"></div>
+        <div class="row justify-content-center">
+            <div class="table-responsive bg-dark rounded pt-2 mt-3">
+                <h5 class="text-color text-center fs-3 mt-2 bg-dark col-3 rounded">Panel de Usuarios</h5>
+                <table class="table table-bordered table-hover table-striped table-dark mx-auto ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center" scope="col">Nombre</th>
+                            <th class="text-center" scope="col">Correo</th>
+                            <th class="text-center" scope="col">Rol</th>
+                            <th class="text-center" scope="col">Imagen</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                            <th class="text-center" scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="user : ${userList}">
+                        <tr class="p-4">
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.rol}"></td>
+                            <td class="text-center">
+                                <a th:if="${#strings.equals(user.rol, T(com.ServiceMatch.SM.enums.RolEnum).PROVEEDOR.name())}"
+                                    class="btn btn-success btn-sm" th:href="@{/imagen/mostrar-imagen/__${user.id}__}"
+                                    target="_blank">Ver</a>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-column flex-sm-row justify-content-center">
+                                    <a th:if="${!(user.active)}" class="btn btn-secondary btn-sm mb-2 mb-sm-0"
+                                        th:href="@{/user/restore/__${user.id}__}">Restaurar</a>
+                                    <a th:if="${user.active}" class="btn btn-success btn-sm mb-2 mb-sm-0"
+                                        th:href="@{/user/modify/__${user.id}__}">Editar</a>
+                                    <!-- <a class="ms-3 btn btn-danger btn-sm"
+                                        th:href="@{/user/delete/__${user.id}__}">Eliminar</a> -->
+                                </div>
+                            </td>
+                            <td th:if="${user.active}">
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa-regular fa-circle-check fa-beat-fade fa-2x "
+                                        style="color: #1f9327;"></i>
+                                </div>
+                            </td>
+                            <td th:unless="${user.active}">
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa-regular fa-circle-xmark fa-2x" style="color: #f56349;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(userList)}">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center pagination-dark mt-3">
+                        <li th:class="${currentPage == 0 ? 'page-item disabled' : 'page-item'}">
+                            <a class="page-link b-paginacion" th:href="@{/user/list(page=0)}">First</a>
+                        </li>
+                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:class="${currentPage == i ? 'page-item active' : 'page-item'}">
+                            <a class="page-link num-paginacion" th:href="@{/suser/list(page=${i})}"
+                                th:text="${i + 1}"></a>
+                        </li>
+                        <li th:class="${currentPage == totalPages - 1 ? 'page-item disabled' : 'page-item'}">
+                            <a class="page-link b-paginacion" th:href="@{/user/list(page=${totalPages - 1})}">Last</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div th:if="${#lists.isEmpty(userList)}">
+            </div>
+        </div>
+        <!--Mensaje de Error th interaccion con controller-->
+        <div th:replace="@{/fragments/thmsg} :: div"></div>
+    </main>
+    <!--Traigo el  Fragmento del footer-->
+    <footer th:replace="@{/fragments/footer} :: footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

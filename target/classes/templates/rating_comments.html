@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- Se incorporó el uso de thymeleaf y spring-security -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+<nav>
+    <li class="btn text-white btn-lg mt-2"><a th:href="@{/}" class="nav-link custom-link fs-5">Inicio</a></li>
+</nav>
+
+<body class="bodyB" id="fondoRating">
+    <div class="container flex-grow-1 mb-4">
+        <div class="row justify-content-center m-1">
+            <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioCreateJob bg-color">
+                <div class="form-group text-center mb-3">
+                    <a class="logo-color fs-5 text-decoration-none"><span class="text-color">Match</span><img th:src="@{../../img/alicates.png}" alt="" class="icono"
+                            width="20em">Service</a>
+                </div>
+                <form class="" th:action="@{/job/rating/{id}(id=${job.id})}" method="POST">
+                    <div class="form-group text-center mb-2">
+                        <div th:replace="@{/fragments/thmsg} :: div"></div>
+                        <h3 th:if="${ job.getCallification()!= null}" class="text-white ">Comentarios cargados. Muchas gracias!!!</h3>
+                        <div th:if="${job.getCallification() == null && job.getComment() == null}">
+                            <h4 class="text-white">Danos tu opinión del trabajo realizado por el proveedor</h4>
+                            <div class="form-group mx-sm-4 pt-3">
+                                <label for="rating" class="text-color mb-1 fw-semibold ps-1">Calificación:</label>
+                                <div class="rating">
+                                    <input hidden type="number" name="callification" id="callification" value="">
+                                    <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                    <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                    <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                    <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                    <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mx-sm-4 pt-3 mb-2">
+                                <textarea class="form-control bg-dark text-white" type="text" name="comment" placeholder="Comentarios" required="true"
+                                    sec:authorize="hasRole('USUARIO')" rows="5"></textarea>
+                            </div>
+                            <div class="form-group mx-sm-4 pt-4 text-center mx-auto">
+                                <button class="btn btnbuscar btn-md mb-3" name="enviarRating" type="submit">Enviar comentario</button>
+                            </div>
+                            <a th:href="@{/}" class="btn btn-secondary botonVolver botones m-auto">Volver</a>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <script th:replace="@{/fragments/script} :: script"></script>
+</body>
+
+</html>

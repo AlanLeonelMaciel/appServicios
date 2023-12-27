@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+
+<body class="d-flex flex-column min-vh-100 bodyLogin">
+  <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+  <main class="container flex-grow-1 fondo-main">
+    <div class="row justify-content-center pt-5 mt-5 m-1">
+      <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioActualizarOficio bg-color">
+        <div class="form-group text-center mb-2 mt-4">
+          <a class="logo-color fs-4 text-decoration-none">
+            <span class="text-color">Match</span>
+            <img th:src="@{/img/alicates.png}" alt="" class="icono" width="30em">
+            Service
+          </a>
+        </div>
+        <form class="" th:action="@{/skill/modify/__${skill.id}__}" method="POST">
+          <input hidden name="id" th:value="${id}">
+          <div class="form-group text-center pt-0">
+            <label for="skillName" class="text-white">
+              <h1 class="fs-2">Actualizar nombre del oficio:</h1>
+            </label>
+          </div>
+          <div class="form-group mx-sm-4 text-rigth pt-2 text-center">
+            <input class="form-control bg-dark text-white fw-semibold" type="text" id="skillName" name="name"
+              th:value="${skill.name}" placeholder="Ingrese el nombre del oficio a cambiar..." autocomplete="off">
+            <div class="form-check form-check-inline text-white me-4 pt-3">
+              <input class="form-check-input" type="radio" name="active" id="active" value="true" checked>
+              <label class="form-check-label" for="active">
+                Alta
+              </label>
+            </div>
+            <div class="form-check form-check-inline text-white">
+              <input class="form-check-input" type="radio" name="active" id="inactive" value="false">
+              <label class="form-check-label" for="inactive">
+                Baja
+              </label>
+            </div>
+          </div>
+          <div class="form-group mx-sm-4 text-rigth pt-2 text-center">
+            <button class="btn btnOrigin mt-3" type="submit">
+              Actualizar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- FRAGMENT MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
+    <div th:fragment="${/fragments/thmsg} :: div"></div>
+  </main>
+  <footer th:replace="@{/fragments/footer} :: footer"></footer>
+</body>
+
+</html>

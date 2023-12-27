@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+<body class="d-flex flex-column min-vh-100 bodyRegistrarOficio">
+  <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+  <main class="container justify-content-center">
+    <div class="row justify-content-center pt-5 mt-5 m-1">
+      <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioRegistrarOficio bg-color">
+        <div class="form-group text-center mb-3 mt-4">
+          <a class="logo-color fs-4 text-decoration-none">
+            <span class="text-color">Match</span>
+            <img th:src="@{../img/alicates.png}" alt="" class="icono" width="30em">
+            Service
+          </a>
+        </div>
+        <div class="form-group text-center pt-0">
+          <h1 class="text-white fs-2">REGISTRAR OFICIO</h1>
+        </div>
+
+        <div class="form-group mx-sm-4 text-white pt-4 fw-semibold text-center">
+          <form th:action="@{/skill/save}" method="post">
+            <input class="form-control bg-dark text-white fw-semibold" type="text" id="skillName" name="skillName"
+              value="" required placeholder="Nombre del oficio a registrar..." autocomplete="off">
+            <div class="form-group mx-sm-4 text-rigth pt-2 text-center">
+              <button type="submit" class="btn text-white btnOrigin mt-4">Registrar</button>
+            </div>
+          </form>
+          <!--Mensaje de Error th interaccion con controller-->
+          <div th:replace="@{/fragments/thmsg} :: div"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="@{/fragments/footer} :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.bodyLogin{
+    background: linear-gradient(rgba(29, 30, 35, 0.3),
+            rgba(29, 30, 35, 0.3)),
+        url(/img/derechos-trabajadores-turnos.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.formularioLogin{
+    padding: 50px;
+    height: 420px;
+    position: static;
+}
+
+.bg-color {
+    background-color: #24272E;
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 5px;
+}
+.btnOrigin {
+    background: linear-gradient(90deg,
+            rgba(245, 99, 72, 1) 0%,
+            rgba(245, 140, 32, 1) 100%);
+    width: 15rem;
+} */
+

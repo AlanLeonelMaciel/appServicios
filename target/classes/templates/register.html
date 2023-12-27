@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+<body class="bodyLogin">
+    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+
+    <div class="container">
+        <div class="row justify-content-center pt-4 mt-3 m-1">
+            <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6">
+                <form th:action="@{/user/save}" class="bg-color formularioRegisterPrincipal" method="POST" enctype="multipart/form-data"
+                    onsubmit="return validarFormulario()">
+                    <div class="form-group text-center mb-2">
+                        <a class="logo-color fs-4 text-decoration-none">
+                            <span class="text-color">Match</span>
+                            <img th:src="@{../img/alicates.png}" alt="" class="icono" width="30em">
+                            Service
+                        </a>
+                    </div>
+                    <div class="form-group text-center pt-0 mb-5">
+                        <h1 class="text-white fs-3">Registro</h1>
+                    </div>
+                    <!-- SELECCIONAR EL TIPO DE USUARIO -->
+                    <div
+                        class="form-group text-white pt-2 fw-semibold text-center d-flex flex-wrap justify-content-center">
+                        <label for="role" class="fw-semibold mb-2 fs-5">Seleccione el tipo de usuario</label>
+                        <div class="mb-2 col-6">
+                            <select id="role" name="role" class="bg-dark text-white form-select form-select-md">
+                                <option value="client">Cliente</option>
+                                <option value="provider">Proveedor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- INGRESAR EL NOMBRE -->
+                    <div class="form-group mx-sm-4 text-rigth pt-2 text-center">
+                        <input required="true" type="text" name="name"
+                            class="form-control bg-dark text-white fw-semibold" placeholder="Nombre" autocomplete="off">
+                    </div>
+                    <!-- INGRESAR EMAIL -->
+                    <div class="form-group mx-sm-4 pt-2">
+                        <input required="true" type="email" name="email"
+                            class="form-control bg-dark text-white fw-semibold  " placeholder="Email"
+                            autocomplete="off">
+                    </div>
+                    <!-- INGRESAR CONTRASEÑA -->
+                    <div class="form-group mx-sm-4 pt-2">
+                        <input required="true" type="password" name="password " 
+                        class="form-control bg-dark text-white fw-semibold" placeholder="Contraseña"
+                        autocomplete="off" minlength="6">
+                    </div>
+                    <!-- REPETIR CONTRASEÑA INGRESADA -->
+                    <div class="form-group mx-sm-4 pt-2">
+                        <input required="true" type="password" name="password2" minlength="6"
+                            class="form-control bg-dark text-white fw-semibold" placeholder="Repetir Contraseña"
+                            autocomplete="off">
+                    </div>
+                    <!-- INGRESAR NÚMERO DE WHATSAPP -->
+                    <div class="form-group mx-sm-4 pt-2" id="wapDiv" style="display:none">
+                        <input type="number" name="whatsApp" class="form-control bg-dark text-white fw-semibold"
+                            placeholder="WhatsApp" autocomplete="off">
+                    </div>
+                    <!-- SUBIR FOTO DE PERFIL -->
+                    <div class="form-group mx-sm-4 text-white pt-2 text-center" id="imagenDiv" style="display:none">
+                        <label for="image" class="mb-2 fw-semibold fs-5">Foto de Perfil</label>
+                        <input type="file" accept="image/*" id="image" name="archivo"
+                            class="form-control bg-dark text-white" onchange="previewImage(event)">
+                        <img id="preview" src="" alt="Image Preview"
+                            style="max-width: 200px; max-height: 200px; display: none;">
+
+                    </div>
+                    <!-- SELECCIONAR SKILLS PROVEEDOR FALTA CONFIGURAR -->
+                    <div class="form-group mx-sm-4 text-white pt-2 text-center" id="skillsDiv" style="display:none">
+                        <div class="form-group mx-sm-4 text-white pt-2 fw-semibold text-center">
+                            <label class="fw-semibold mb-2 fs-5">Seleccionar servicio/s</label>
+                            <!-- Agrega un div para mostrar mensajes de error -->
+                            <div id="mensajeError" style="color: red;"></div>
+                        </div>
+                        <div id="skills" style="height: 200px; overflow-y: auto;">
+                            <table class="table table-borderless table-hover table-striped table-dark">
+                                <!-- SUPRIMI LOS ENCABEZADOS DE SKILL PORQUE ERA REDUNDANTE -->
+                                <tbody>
+                                    <tr th:each="skill : ${skillsRegistro}">
+                                        <td th:text="${skill.name}"></td>
+                                        <td><input type="checkbox" name="skills" th:value="${skill.id}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- ENVIAR LOS DATOS Y REGISTRAR USUARIO -->
+                    <div class="form-group mx-sm-4 text-rigth pt-4 text-center">
+                        <input class="btn btnOrigin text-white btn-lg mt-2" type="submit" value="Registrarse">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- FRAGMENT MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
+    <div th:fragment="${/fragments/thmsg} :: div"></div>
+    <script th:replace="@{/fragments/script} :: script"></script>
+</body>
+
+</html>

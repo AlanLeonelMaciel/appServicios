@@ -1,0 +1,42 @@
+<div class="container justify-content-center">
+    <div class="text-center">
+        <div class="container">
+            <h4 class="text-color mt-3 mb-3">Nuestros servicios</h4>
+            <form th:action="@{'/user/providers/' + ${selectedSkill}}" method="get" class="mx-auto">
+                <div class="form-group my-3 mb-2 row justify-content-center">
+                    <div class="col-4">
+                        <select name="skill" class="bg-dark text-white form-select form-select-md">
+                            <option value="">Seleccionar oficio</option>
+                            <option th:each="skill : ${skills}" th:value="${skill.name}" th:text="${skill.name}"></option>
+                        </select>
+                    </div>
+                    <div class="col-1 pe-1 ps-1">
+                        <button th:if="${session.usuariosession != null}" type="submit" class="btn float-start btnbuscar">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div  th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'ADMINISTRADOR')"   class="d-flex flex-row">
+            <div th:replace="@{/fragments/thmsg} :: div"></div>
+            <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
+                <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
+                <img class="card-img-top" id="preview" alt="Image Preview" th:src="@{/imagen/perfil/__${provider.id}__}" th:if="${provider.imagen != null}">
+                <img class="card-img-top" th:src="@{/img/no-profile.png}" th:if="${provider.imagen == null}">
+                <div class="card-body justify-content-center">
+                    <h5 th:text="${provider.name}" class="card-title text-white"></h5>
+                    <div th:each="skill : ${skills}">
+                        <p th:if="${#lists.contains(provider.skills, skill)}" th:text="${skill.name}" class="card-text"></p>
+                    </div>
+                    <div class="rating cardCalif">
+                        <label class="card-title fw-semibold">Calificación:</label>
+                        <span th:if="${averageCalification != 0}" class="card-text" th:text="${averageCalification}"></span>
+                        <span th:if="${averageCalification == 0}" class="card-text">-</span>
+                        <span th:if="${averageCalification != 0}" class="fa fa-star ps-1" th:each="i : ${#numbers.sequence(1, averageCalification)}"></span>
+                        <span th:if="${averageCalification % 1 != 0 && averageCalification < 4}" class="ps-0 fa fa-star-half"></span>
+                    </div>
+                    <a th:href="@{/user/providers/details/{id}(id=${provider.id})}" class="btn btn-dark mx-auto">Ver Proveedor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

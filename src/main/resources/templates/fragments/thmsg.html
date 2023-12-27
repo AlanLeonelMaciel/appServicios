@@ -1,0 +1,7 @@
+<!-- MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
+<div style="margin: 5px" th:if="${exito!=null}" class="alert alert-success" role="alert">
+  <p th:text="${exito}"></p>
+</div>
+<div style="margin: 5px" th:if="${error!=null}" class="alert alert-danger" role="alert">
+  <p th:text="${error}"></p>
+</div>

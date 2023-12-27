@@ -1,0 +1,62 @@
+<!--Imporntante colocar el script de boostrap antes de cerrar el body-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container-fluid ">
+
+    <a th:href="@{/}" class="navbar-brand logo-color fs-4"> <span class="text-color">Match</span> <img th:src="@{/img/alicates.png}" alt="" class="icono"
+        width="30em" th:href="@{/}"> Service </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS" aria-controls="navbarS" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span> </button>
+
+    <div class="collapse navbar-collapse" id="navbarS">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a th:href="@{/}" class="nav-link custom-link fs-5">Inicio</a></li>
+        <!-- SI EL USUARIO ESTÁ LOGUEADO PUEDE VER LA LISTA DE SERVICIOS -->
+        <li th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+          <a th:href="@{/skill/list}" class="nav-link custom-link fs-5">Servicios</a>
+        </li>
+        <li th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO')">
+          <a th:href="@{/user/providers}" class="nav-link custom-link fs-5">Buscar Proveedores</a>
+        </li>
+        <!-- SI EL USUARIO ESTA LOGUEADO SE MUESTRAN LOS TRABAJOS -->
+        <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'PROVEEDOR')">
+          <a th:href="@{'/job/list/provider/'+${session.usuariosession.id}}" name="id" class="nav-link custom-link fs-5">Trabajos</a>
+        </li>
+
+        <li th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PROVEEDOR')">
+          <a th:href="@{'/user/providers/calification/'+${session.usuariosession.id}}" class="nav-link custom-link fs-5">Desempeño</a>
+        </li>
+        <!-- SI EL USUARIO ESTA LOGUEADO Y ES UN ADMIN SE MUESTRAN LOS USUARIOS -->
+        <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+          <a th:href="@{/user/list}" class="nav-link custom-link fs-5">Usuarios</a>
+        </li>
+        <!-- SI EL USUARIO ESTA LOGUEADO Y ES UN ADMIN SE MUESTRAN LOS COMENTARIOS -->
+        <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+          <a th:href="@{/job/comment/list}" class="nav-link custom-link fs-5">Comentarios</a>
+        </li>
+        <!-- SI EL USUARIO NO ESTÁ LOGUEADO APARECE EL LOGIN INGRESAR -->
+        <li class="nav-item" th:if="${session.usuariosession == null}">
+          <a th:href="@{/login}" class="nav-link custom-link fs-5">Ingresar</a>
+        </li>
+        <!-- SI EL USUARIO ESTÁ LOGUEADO PUEDE EDITAR SU PERFIL Y CERRAR SESIÓN -->
+        <li class="nav-item dropdown" th:if="${session.usuariosession != null}">
+          <a th:text="${session.usuariosession.name}" class="nav-link dropdown-toggle nav-link custom-link fs-5" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false"></a>
+          <ul class="dropdown-menu bg-dark text-light ">
+            <li><a class="dropdown-item text-light custom-dropdown-hover" sec:authorize="hasAnyRole('USUARIO', 'PROVEEDOR')"
+                th:href="@{'/user/editprofile/'+${session.usuariosession.id}}">Editar Perfil</a></li>
+            <li>
+              <hr class=" dropdown-divider">
+            </li>
+            <li><a class="dropdown-item text-light custom-dropdown-hover" th:href="@{/logout}">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+        <!-- SI EL USUARIO  NO ESTÁ LOGUEADO PUEDE REGISTRARSE -->
+        <li class="nav-item">
+          <a class="nav-link custom-link naranja fs-5" th:if="${session.usuariosession == null}" th:href="@{/user/registration}">Registrarse</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

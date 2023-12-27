@@ -1,0 +1,201 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.text-color {
+  color: #F56349;
+}
+
+.logo-color {
+  color: #FFFFFF;
+}
+
+.navbar {
+  background-color: #191A1F;
+}
+
+.navbar-brand {
+  margin-left: 150px;
+}
+
+.navbar-nav {
+  margin-right: 110px;
+}
+
+.nav-link.custom-link {
+  margin-right: 40px;
+  text-shadow: 1px 1px black;
+  color: aliceblue
+}
+
+.dropdown-menu {
+  background-color: #191A1F;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #191A1F;
+}
+
+.nav-link.custom-link.nanraja {
+  color: #F56349;
+}
+
+.nav-link.custom-link:hover {
+  color: #F56349;
+}
+
+
+.nav-link.custom-link.nanraja:hover {
+  color: #b14330;
+}
+
+
+
+#header {
+  background: linear-gradient(rgba(29, 30, 35, 0.6),
+      rgba(29, 30, 35, 0.6)),
+    url(/img/Cuales-son-los-factores-que-alteran-el-desempeno-de-los-trabajadores-en-el-sector-minero.jpg);
+
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  min-height: 70vh;
+  padding: 80px 0 0 0;
+}
+
+.titulo-h1 {
+  font-size: 50px;
+  text-shadow: 1px 1px black;
+}
+
+.descripcion-p {
+  font-size: 18px;
+  text-shadow: 1px 1px black;
+}
+
+
+.btnOrigin {
+  background: linear-gradient(90deg,
+      rgba(245, 99, 72, 1) 0%,
+      rgba(245, 140, 32, 1) 100%);
+      width: 15rem;
+}
+
+.btn-rojo {
+  background: linear-gradient(90deg,
+          rgba(255, 0, 0, 1) 0%,
+          rgba(255, 100, 100, 1) 100%);
+  width: 15rem;
+}
+
+
+.section-container {
+  background-color: #24272E;
+}
+
+.section-container-dos {
+  background-color: #191A1F;
+  padding-bottom: 30px;
+}
+
+
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.contact {
+  padding: 100px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)),
+    url(/img/celular-2.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.contact-content {
+  text-align: center;
+}
+
+.mapa {
+  padding: 25px;
+  text-align: center;
+  background-color: #24272E;
+}
+
+.mapa-container {
+  background-color: #191A1F;
+  max-width: 100%;
+  height: 380px;
+  margin: 25px auto;
+  overflow: hidden;
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 375px;
+  padding: 50px 100px;
+}
+
+footer {
+  background-color: #191A1F;
+  padding: 5px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  margin: 5px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.footer-content a {
+  margin: 5px;
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+}
+
+.social-icons a {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.home-link {
+  font-size: 20px;
+  color: #D4D4D4;
+  display: block;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px black;
+}
+
+.home-link:hover {
+  color: #F56349;
+}
+
+.group {
+  color: #F56349;
+}
+
+.formulario {
+  padding: 50px;
+  height: 740px;
+  position: static;
+} */

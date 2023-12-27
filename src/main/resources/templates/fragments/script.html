@@ -1,0 +1,100 @@
+<!-- SCRIPT PARA REGISTRO DE USUARIO PROVEEDOR -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var roleSelect = document.getElementById('role');  // Asegúrate de que tengas un elemento con el id 'role'
+    var imagenDiv = document.getElementById('imagenDiv');
+    var skillsDiv = document.getElementById('skillsDiv');
+    var wapDiv = document.getElementById('wapDiv');
+
+    if (roleSelect) {
+      // Verificar el valor predeterminado al cargar la página
+      if (roleSelect.value === 'provider') {
+        imagenDiv.style.display = 'block';
+        skillsDiv.style.display = 'block';
+        wapDiv.style.display = 'block';
+      } else {
+        imagenDiv.style.display = 'none';
+        skillsDiv.style.display = 'none';
+        wapDiv.style.display = 'none';
+      }
+
+      // Agregar un listener para cambios en la selección
+      roleSelect.addEventListener('change', function () {
+        if (roleSelect.value === 'provider') {
+          imagenDiv.style.display = 'block';
+          skillsDiv.style.display = 'block';
+          wapDiv.style.display = 'block';
+        } else {
+          imagenDiv.style.display = 'none';
+          skillsDiv.style.display = 'none';
+          wapDiv.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  function previewImage(event) {
+    var input = event.target;
+    var preview = document.getElementById('preview');
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      }
+
+      reader.readAsDataURL(input.files[0]);
+
+    }
+  }
+  function validarFormulario() {
+    // Obtener el valor seleccionado en el campo de tipo de usuario
+    var tipoUsuario = document.getElementById('role').value;
+
+    // Si el tipo de usuario es "proveedor" y no hay habilidades seleccionadas, mostrar mensaje de error
+    if (tipoUsuario === 'provider') {
+      var checkboxes = document.getElementsByName('skills');
+      var contadorSeleccionados = 0;
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          contadorSeleccionados++;
+        }
+      }
+
+      if (contadorSeleccionados === 0) {
+        mostrarMensajeError('Por favor, selecciona al menos una habilidad.');
+        return false;
+      }
+    }
+
+    // Si no hay errores, permitir que el formulario se envíe
+    return true;
+  }
+
+  function mostrarMensajeError(mensaje) {
+
+    var mensajeErrorElemento = document.getElementById('mensajeError');
+    mensajeErrorElemento.innerText = mensaje;
+
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('.star');
+    const calificationInput = document.getElementById('callification');
+    stars.forEach(star => {
+      star.addEventListener('click', function () {
+        const value = this.getAttribute('data-value');
+        calificationInput.value = value;
+        stars.forEach(s => s.classList.remove('selected'));
+        for (let i = 1; i <= value; i++) {
+          stars[i - 1].classList.add('selected');
+        }
+      });
+    });
+  });
+
+</script>

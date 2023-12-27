@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+<body class="d-flex flex-column min-vh-100 bodyCreateJob">
+  <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+  <main class="container flex-grow-1 mb-4">
+    <div class="row justify-content-center pt-3 mt-3 m-1">
+      <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioCreateJob bg-color">
+        <div class="form-group text-center mb-2">
+          <a class="logo-color fs-5 text-decoration-none"><span class="text-color">Match</span><img
+              th:src="@{../../img/alicates.png}" alt="" class="icono" width="20em">Service</a>
+        </div>
+        <div th:replace="@{/fragments/thmsg} :: div"></div>
+        <form class="mt-1" th:action="@{'/job/create/' + ${idProvider}}" method="POST" enctype="multipart/form-data">
+          <div class="form-group text-center pt-2">
+            <h4 class="text-white"> SOLICITUD DE TRABAJO </h4>
+          </div>
+          <div class="form-group mx-sm-4 pt-3 mb-2">
+            <label for="description" class="text-color mb-1 fw-semibold ps-1">Descripción:</label>
+            <textarea class="form-control bg-dark text-white" type="text" name="description"
+              placeholder="Cargue una breve descripcion del trabajo que solicita" required="true"
+              sec:authorize="hasRole('USUARIO')" rows="5"></textarea>
+          </div>
+
+          <div class="form-group mx-sm-4 pt-2 text-white" style="margin-bottom: 20px;">
+            <label for="description" class="text-color mb-1 fw-semibold ps-1">Servicio requerido:</label>
+            <input type="number" id="skill" name="idSkill" th:each="skill : ${skills}" th:if="${skill.active}"
+              th:value="${skill.id}" th:text="${skill.name}" hidden>
+          </div>
+
+          <input class="form-control" type="number" id="client" name="idClient" th:if="${client != null}"
+            th:value="${client.getId()}" hidden>
+          <input class="form-control" type="number" id="provider" name="idProvider" th:value="${provider.getId()}"
+            hidden>
+
+          <div class="form-group mx-sm text-center pb-2">
+            <button type="submit" class="btn btn-md btnbuscar">Solicitar Presupuesto</button>
+          </div>
+
+          <section class=" text-center container">
+            <div class="row mt-3">
+              <div class="divVolver">
+                <a th:href="@{/user/providers}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+              </div>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="@{/fragments/footer} :: footer"></footer>
+</body>
+
+</html>

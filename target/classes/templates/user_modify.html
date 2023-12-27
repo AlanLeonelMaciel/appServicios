@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+
+<head th:replace="@{/fragments/head} :: head"></head>
+
+<body class="d-flex flex-column min-vh-100 bodyLogin">
+
+    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+
+    <main class="container flex-grow-1 fondo-main">
+        <div class="row justify-content-center pt-5 mt-5 m-1">
+            <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioActualizarNombreUser bg-color">
+                <div class="form-group text-center mb-3 mt-4">
+                    <a class="logo-color fs-4 text-decoration-none">
+                        <span class="text-color">Match</span>
+                        <img th:src="@{/img/alicates.png}" alt="" class="icono" width="30em">
+                        Service
+                    </a>
+                </div>
+                <form class="formulario" th:action="@{/user/modify/__${user.id}__}" method="POST">
+
+                    <input hidden name="id" th:value="${id}">
+                    <div class="form-group text-center pt-0">
+                        <label for="name" class="text-white">
+                            <h1 class="fs-4">ACTUALIZAR NOMBRE USUARIO</h1>
+                        </label>
+                    </div>
+                    <div class="form-group mx-sm-4 text-rigth pt-3 text-center">
+                        <input class="form-control bg-dark text-white fw-semibold" type="text" id="name" name="name"
+                            th:value="${user.name}" placeholder="Ingrese el nombre a cambiar..." autocomplete="off">
+                        <div class="form-check form-check-inline text-white me-4 pt-3">
+                            <input class="form-check-input" type="radio" name="active" id="active" value="true" checked>
+                            <label class="form-check-label" for="active">
+                                Alta
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline text-white">
+                            <input class="form-check-input" type="radio" name="active" id="inactive" value="false">
+                            <label class="form-check-label" for="inactive">
+                                Baja
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group mx-sm-4 text-rigth pt-2 text-center">
+                        <button class="btn btnOrigin mt-3" type="submit">
+                            Actualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--Mensaje de Error th interaccion con controller-->
+            <div th:replace="@{/fragments/thmsg} :: div"></div>
+        </div>
+    </main>
+    <footer th:replace="@{/fragments/footer} :: footer"></footer>
+</body>
+</html>
