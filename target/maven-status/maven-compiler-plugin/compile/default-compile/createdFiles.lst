@@ -3,6 +3,7 @@ com\ServiceMatch\SM\enums\JobStatusEnum.class
 com\ServiceMatch\SM\controllers\PortalController.class
 com\ServiceMatch\SM\controllers\SkillController.class
 com\ServiceMatch\SM\seeds\SeedData.class
+MvcConfig.class
 com\ServiceMatch\SM\controllers\ErrorsController.class
 com\ServiceMatch\SM\SmApplication.class
 com\ServiceMatch\SM\repository\UserRepository.class
