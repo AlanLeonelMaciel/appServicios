@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body class="d-flex flex-column min-vh-100 bodyLogin">
 
-    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <nav th:replace="fragments/plantilla :: nav"/>
 
     <main class="container flex-grow-1 fondo-main">
         <div class="row justify-content-center pt-5 mt-5 m-1">
@@ -49,9 +49,9 @@
                 </form>
             </div>
             <!--Mensaje de Error th interaccion con controller-->
-            <div th:replace="@{/fragments/thmsg} :: div"></div>
+            <div th:replace="fragments/plantilla :: thmsg"/>
         </div>
     </main>
-    <footer th:replace="@{/fragments/footer} :: footer"></footer>
+    <footer th:replace="fragments/plantilla :: footer"/>
 </body>
 </html>

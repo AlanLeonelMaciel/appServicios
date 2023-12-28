@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <!--Descripción acorde al proyecto-->
+                <meta name="description" content="Pagina servicios Chacras de Coria en Mendoza">
+                    <meta name="keywords" content="HTML, CSS, Boostrap 5, Servicios, Mendoza">
+                        <!--Título del sitio-->
+                        <title>ServiceMatch</title>
+                        <!--Favicon-->
+
+                        <link rel="icon" th:href="@{../img/alicates.png}" type="image/png">
+                            <!-- Enlaces a hojas de estilo, hay que unificarlas-->
+                            <link rel="stylesheet" th:href="@{/css/style.css}">
+                                <!-- <link rel="stylesheet" th:href="@{/css/styleLogin.css}"> -->
+                                <!-- Enlace al CDN de Bootstrap 5 para aplicar estilos -->
+                                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                                      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+                                    <script src="https://kit.fontawesome.com/633afa63fd.js" crossorigin="anonymous"></script>
+                                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+                                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                                        </head>
+                                        <body>
+                                            th:fragment="navegacion"
+                                            <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+                                                <div class="container-fluid ">
+
+                                                    <a th:href="@{/}" class="navbar-brand logo-color fs-4"> <span class="text-color">Match</span> <img th:src="@{/img/alicates.png}" alt="" class="icono"
+                                                                                                                                                       width="30em" th:href="@{/}"> Service </a>
+                                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS" aria-controls="navbarS" aria-expanded="false"
+                                                            aria-label="Toggle navigation">
+                                                        <span class="navbar-toggler-icon"></span> </button>
+
+                                                    <div class="collapse navbar-collapse" id="navbarS">
+                                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                                            <li class="nav-item"><a th:href="@{/}" class="nav-link custom-link fs-5">Inicio</a></li>
+                                                            <!-- SI EL USUARIO ESTÁ LOGUEADO PUEDE VER LA LISTA DE SERVICIOS -->
+                                                            <li th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+                                                                <a th:href="@{/skill/list}" class="nav-link custom-link fs-5">Servicios</a>
+                                                            </li>
+                                                            <li th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO')">
+                                                                <a th:href="@{/user/providers}" class="nav-link custom-link fs-5">Buscar Proveedores</a>
+                                                            </li>
+                                                            <!-- SI EL USUARIO ESTA LOGUEADO SE MUESTRAN LOS TRABAJOS -->
+                                                            <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'PROVEEDOR')">
+                                                                <a th:href="@{'/job/list/provider/'+${session.usuariosession.id}}" name="id" class="nav-link custom-link fs-5">Trabajos</a>
+                                                            </li>
+
+                                                            <li th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PROVEEDOR')">
+                                                                <a th:href="@{'/user/providers/calification/'+${session.usuariosession.id}}" class="nav-link custom-link fs-5">Desempeño</a>
+                                                            </li>
+                                                            <!-- SI EL USUARIO ESTA LOGUEADO Y ES UN ADMIN SE MUESTRAN LOS USUARIOS -->
+                                                            <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+                                                                <a th:href="@{/user/list}" class="nav-link custom-link fs-5">Usuarios</a>
+                                                            </li>
+                                                            <!-- SI EL USUARIO ESTA LOGUEADO Y ES UN ADMIN SE MUESTRAN LOS COMENTARIOS -->
+                                                            <li class="nav-item" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMINISTRADOR')">
+                                                                <a th:href="@{/job/comment/list}" class="nav-link custom-link fs-5">Comentarios</a>
+                                                            </li>
+                                                            <!-- SI EL USUARIO NO ESTÁ LOGUEADO APARECE EL LOGIN INGRESAR -->
+                                                            <li class="nav-item" th:if="${session.usuariosession == null}">
+                                                                <a th:href="@{/login}" class="nav-link custom-link fs-5">Ingresar</a>
+                                                            </li>
+                                                            <!-- SI EL USUARIO ESTÁ LOGUEADO PUEDE EDITAR SU PERFIL Y CERRAR SESIÓN -->
+                                                            <li class="nav-item dropdown" th:if="${session.usuariosession != null}">
+                                                                <a th:text="${session.usuariosession.name}" class="nav-link dropdown-toggle nav-link custom-link fs-5" href="#" role="button" data-bs-toggle="dropdown"
+                                                                   aria-expanded="false"></a>
+                                                                <ul class="dropdown-menu bg-dark text-light ">
+                                                                    <li><a class="dropdown-item text-light custom-dropdown-hover" sec:authorize="hasAnyRole('USUARIO', 'PROVEEDOR')"
+                                                                           th:href="@{'/user/editprofile/'+${session.usuariosession.id}}">Editar Perfil</a></li>
+                                                                    <li>
+                                                                        <hr class=" dropdown-divider">
+                                                                    </li>
+                                                                    <li><a class="dropdown-item text-light custom-dropdown-hover" th:href="@{/logout}">Cerrar Sesión</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <!-- SI EL USUARIO  NO ESTÁ LOGUEADO PUEDE REGISTRARSE -->
+                                                            <li class="nav-item">
+                                                                <a class="nav-link custom-link naranja fs-5" th:if="${session.usuariosession == null}" th:href="@{/user/registration}">Registrarse</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </nav>
+                                            <div th:fragment="providerList" class="container justify-content-center">
+                                                <div class="text-center">
+                                                    <div class="container">
+                                                        <h4 class="text-color mt-3 mb-3">Nuestros servicios</h4>
+                                                        <form th:action="@{'/user/providers/' + ${selectedSkill}}" method="get" class="mx-auto">
+                                                            <div class="form-group my-3 mb-2 row justify-content-center">
+                                                                <div class="col-4">
+                                                                    <select name="skill" class="bg-dark text-white form-select form-select-md">
+                                                                        <option value="">Seleccionar oficio</option>
+                                                                        <option th:each="skill : ${skills}" th:value="${skill.name}" th:text="${skill.name}"></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-1 pe-1 ps-1">
+                                                                    <button th:if="${session.usuariosession != null}" type="submit" class="btn float-start btnbuscar">Buscar</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div  th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'ADMINISTRADOR')"   class="d-flex flex-row">
+                                                        <div th:replace="@{/fragments/thmsg} :: div"></div>
+                                                        <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
+                                                            <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
+                                                                <img class="card-img-top" id="preview" alt="Image Preview" th:src="@{/imagen/perfil/__${provider.id}__}" th:if="${provider.imagen != null}">
+                                                                    <img class="card-img-top" th:src="@{/img/no-profile.png}" th:if="${provider.imagen == null}">
+                                                                        <div class="card-body justify-content-center">
+                                                                            <h5 th:text="${provider.name}" class="card-title text-white"></h5>
+                                                                            <div th:each="skill : ${skills}">
+                                                                                <p th:if="${#lists.contains(provider.skills, skill)}" th:text="${skill.name}" class="card-text"></p>
+                                                                            </div>
+                                                                            <div class="rating cardCalif">
+                                                                                <label class="card-title fw-semibold">Calificación:</label>
+                                                                                <span th:if="${averageCalification != 0}" class="card-text" th:text="${averageCalification}"></span>
+                                                                                <span th:if="${averageCalification == 0}" class="card-text">-</span>
+                                                                                <span th:if="${averageCalification != 0}" class="fa fa-star ps-1" th:each="i : ${#numbers.sequence(1, averageCalification)}"></span>
+                                                                                <span th:if="${averageCalification % 1 != 0 && averageCalification < 4}" class="ps-0 fa fa-star-half"></span>
+                                                                            </div>
+                                                                            <a th:href="@{/user/providers/details/{id}(id=${provider.id})}" class="btn btn-dark mx-auto">Ver Proveedor</a>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+
+
+
+                                                                        <div>TODO write content</div>
+                                                                        <!--Footer de las vistas-->
+                                                                        <footer th:fragment="footer" class="footer-color text-white py-2">
+
+                                                                            <div class="container">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <p class="mb-0 text-center">&copy; Derechos de autor <span class="group">GRUPO O</span> 2023</p>
+                                                                                    </div>
+                                                                                    <div class="col-md-4 text-center">
+                                                                                        <a th:href="@{#header}" class="d-block mb-2 link-colors">Volver al inicio</a>
+                                                                                    </div>
+                                                                                    <div class="col-md-4 text-center">
+                                                                                        <div class="social-icons">
+                                                                                            <a th:href="@{https://www.facebook.com/?locale=es_LA}" class="me-2 social-icons m-3" target="_blank"><img
+                                                                                                    th:src="@{/img/facebook.png}" alt="Facebook"></a>
+                                                                                            <a th:href="@{https://twitter.com/home}" class="me-2 social-icons m-3" target="_blank"><img
+                                                                                                    th:src="@{/img/twitter.png}" alt="Twitter"></a>
+                                                                                            <a th:href="@{https://www.instagram.com/}" class="me-2 social-icons m-3" target="_blank"><img
+                                                                                                    th:src="@{/img/instagram.png}" alt="Instagram"></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </footer>
+                                                                        <div th:fragment="userList" class="container justify-content-center">
+                                                                            <div>
+                                                                                <h5 class="text-color" style="margin-top: 1rem;">Lista Usuarios</h5>
+                                                                            </div>
+                                                                            <div class="row justify-content-center">
+
+                                                                                <table class=" table table-borderless table-hover table-striped table-dark table-limit">
+
+                                                                                    <thead class="thead-light">
+                                                                                        <tr>
+                                                                                            <th scope="col">Nombre</th>
+                                                                                            <th scope="col">Correo</th>
+                                                                                            <th scope="col">Rol</th>
+                                                                                            <th scope="col">Imagen</th>
+                                                                                            <th scope="col">Acciones</th>
+                                                                                            <th scope="col">
+                                                                                                <div class="d-flex justify-content-center">
+                                                                                                    Estado
+                                                                                                </div>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody th:each="user : ${userList}">
+                                                                                        <tr class="p-4">
+
+                                                                                            <td th:text="${user.name}"></td>
+                                                                                            <td th:text="${user.email}"></td>
+                                                                                            <td th:text="${user.rol}"></td>
+                                                                                            <td>
+                                                                                                <!-- MODIFIQUÉ EN ESTA LÍNEA EL TH:IF PORQUE ME ROMPÍA LA PÁGINA LA LÓGICA th:if="${user.rol == T(com.ServiceMatch.SM.enums.RolEnum).PROVEEDOR}" -->
+                                                                                                <a th:if="${#strings.equals(user.rol, T(com.ServiceMatch.SM.enums.RolEnum).PROVEEDOR.name())}" class="btn btn-success btn-sm"
+                                                                                                   th:href="@{/imagen/mostrar-imagen/__${user.id}__}" target="_blank">Ver</a>
+                                                                                            </td>
+                                                                                            <!-- dtype,registration_date,whats_app me dan error al traerlos -->
+                                                                                            <td>
+                                                                                                <!--Si está dado de baja: Boton para RESTAURAR-->
+                                                                                                <a th:if="${!(user.active)}" class="btn btn-secondary btn-sm" th:href="@{/user/restore/__${user.id}__}">Restaurar</a>
+                                                                                                <!--Si está dado de alta: Boton para EDITAR-->
+                                                                                                <a th:if="${user.active}" class="btn btn-success btn-sm" th:href="@{/user/modify/__${user.id}__}">Editar</a>
+                                                                                                <a class="btn btn-rojo btn-sm" th:href="@{/user/delete/__${user.id}__}">Eliminar</a>
+                                                                                            </td>
+                                                                                            <td th:if="${user.active}" th:href="@{https://fontawesome.com/icons/circle-check?f=classic&s=regular&an=beat-fade&sz=2xs&pc=%23f56349}">
+                                                                                                <div class="d-flex justify-content-center">
+
+                                                                                                    <i class="fa-regular fa-circle-check fa-beat-fade fa-2x " style="color: #1f9327;"></i>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td th:unless="${user.active}"
+                                                                                                th:href="@{https://fontawesome.com/icons/circle-check?f=classic&s=regular&an=beat-fade&sz=2xs&pc=%23f56349}">
+                                                                                                <div class="d-flex justify-content-center">
+
+                                                                                                    <i class="fa-regular fa-circle-xmark fa-2x" style="color: #f56349;"></i>
+                                                                                                </div>
+                                                                                            </td>
+
+
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>                                                                      
+                                                                        </div>
+                                                                        <!-- MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
+                                                                        <div th:fragment="thmsg">
+                                                                            <div style="margin: 5px" th:if="${exito!=null}" class="alert alert-success" role="alert">
+                                                                                <p th:text="${exito}"></p>
+                                                                            </div>
+                                                                            <div style="margin: 5px" th:if="${error!=null}" class="alert alert-danger" role="alert">
+                                                                                <p th:text="${error}"></p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <script th:fragment="script">
+                                                                            document.addEventListener('DOMContentLoaded', function () {
+                                                                                var roleSelect = document.getElementById('role');  // Asegúrate de que tengas un elemento con el id 'role'
+                                                                                var imagenDiv = document.getElementById('imagenDiv');
+                                                                                var skillsDiv = document.getElementById('skillsDiv');
+                                                                                var wapDiv = document.getElementById('wapDiv');
+
+                                                                                if (roleSelect) {
+                                                                                    // Verificar el valor predeterminado al cargar la página
+                                                                                    if (roleSelect.value === 'provider') {
+                                                                                        imagenDiv.style.display = 'block';
+                                                                                        skillsDiv.style.display = 'block';
+                                                                                        wapDiv.style.display = 'block';
+                                                                                    } else {
+                                                                                        imagenDiv.style.display = 'none';
+                                                                                        skillsDiv.style.display = 'none';
+                                                                                        wapDiv.style.display = 'none';
+                                                                                    }
+
+                                                                                    // Agregar un listener para cambios en la selección
+                                                                                    roleSelect.addEventListener('change', function () {
+                                                                                        if (roleSelect.value === 'provider') {
+                                                                                            imagenDiv.style.display = 'block';
+                                                                                            skillsDiv.style.display = 'block';
+                                                                                            wapDiv.style.display = 'block';
+                                                                                        } else {
+                                                                                            imagenDiv.style.display = 'none';
+                                                                                            skillsDiv.style.display = 'none';
+                                                                                            wapDiv.style.display = 'none';
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                            });
+
+                                                                            function previewImage(event) {
+                                                                                var input = event.target;
+                                                                                var preview = document.getElementById('preview');
+
+                                                                                if (input.files && input.files[0]) {
+                                                                                    var reader = new FileReader();
+
+                                                                                    reader.onload = function (e) {
+                                                                                        preview.src = e.target.result;
+                                                                                        preview.style.display = 'block';
+                                                                                    }
+
+                                                                                    reader.readAsDataURL(input.files[0]);
+
+                                                                                }
+                                                                            }
+                                                                            function validarFormulario() {
+                                                                                // Obtener el valor seleccionado en el campo de tipo de usuario
+                                                                                var tipoUsuario = document.getElementById('role').value;
+
+                                                                                // Si el tipo de usuario es "proveedor" y no hay habilidades seleccionadas, mostrar mensaje de error
+                                                                                if (tipoUsuario === 'provider') {
+                                                                                    var checkboxes = document.getElementsByName('skills');
+                                                                                    var contadorSeleccionados = 0;
+
+                                                                                    for (var i = 0; i < checkboxes.length; i++) {
+                                                                                        if (checkboxes[i].checked) {
+                                                                                            contadorSeleccionados++;
+                                                                                        }
+                                                                                    }
+
+                                                                                    if (contadorSeleccionados === 0) {
+                                                                                        mostrarMensajeError('Por favor, selecciona al menos una habilidad.');
+                                                                                        return false;
+                                                                                    }
+                                                                                }
+
+                                                                                // Si no hay errores, permitir que el formulario se envíe
+                                                                                return true;
+                                                                            }
+
+                                                                            function mostrarMensajeError(mensaje) {
+
+                                                                                var mensajeErrorElemento = document.getElementById('mensajeError');
+                                                                                mensajeErrorElemento.innerText = mensaje;
+
+                                                                            }
+
+
+                                                                            document.addEventListener('DOMContentLoaded', function () {
+                                                                                const stars = document.querySelectorAll('.star');
+                                                                                const calificationInput = document.getElementById('callification');
+                                                                                stars.forEach(star => {
+                                                                                    star.addEventListener('click', function () {
+                                                                                        const value = this.getAttribute('data-value');
+                                                                                        calificationInput.value = value;
+                                                                                        stars.forEach(s => s.classList.remove('selected'));
+                                                                                        for (let i = 1; i <= value; i++) {
+                                                                                            stars[i - 1].classList.add('selected');
+                                                                                        }
+                                                                                    });
+                                                                                });
+                                                                            });
+
+                                                                        </script>
+                                                                        </body>
+                                                                        </html>

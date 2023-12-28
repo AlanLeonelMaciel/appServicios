@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body id="page-top" class="bg-dark">
-    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <nav th:replace="fragments/plantilla :: nav"/>
     <main class="container justify-content-center">
-        <div th:replace="@{/fragments/thmsg} :: div"></div>
+        <div th:replace="fragments/plantilla :: thmsg"/>
         <div class="text-center">
             <div class="container">
                 <h4 class="text-color mt-3 mb-3">Buscar Proveedores</h4>
@@ -44,10 +44,10 @@
             </div>
         </div>
 
-        <div th:replace="fragments/paginacion :: div"></div>
+        <div th:replace="fragments/plantilla :: paginacion"/>
     </main>
-    <footer th:replace="@{/fragments/footer} :: footer"></footer>
-    <script th:replace="@{/fragments/script} :: script"></script>
+    <footer th:replace="fragments/plantilla :: footer"/>
+    <script th:replace="fragments/plantilla :: script"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>

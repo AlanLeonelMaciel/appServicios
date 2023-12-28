@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 
 <body class="d-flex flex-column min-vh-100 bodyLogin">
-  <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+  <nav th:replace="fragments/plantilla :: nav"/>
   <main class="container flex-grow-1 fondo-main">
     <div class="row justify-content-center pt-5 mt-5 m-1">
       <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 formularioActualizarOficio bg-color">
@@ -48,9 +48,9 @@
       </div>
     </div>
     <!-- FRAGMENT MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
-    <div th:fragment="${/fragments/thmsg} :: div"></div>
+    <div th:replace="fragments/plantilla :: thmsg"/>
   </main>
-  <footer th:replace="@{/fragments/footer} :: footer"></footer>
+  <footer th:replace="fragments/plantilla :: footer"/>
 </body>
 
 </html>

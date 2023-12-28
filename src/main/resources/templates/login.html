@@ -2,10 +2,10 @@
 <!-- Se incorporó el uso de thymeleaf y spring-security -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body class="d-flex flex-column min-vh-100 bodyLogin">
-    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <nav th:replace="fragments/plantilla :: nav"/>
     <main class="container">   
         <div class="row justify-content-center pt-3 mt-3 m-1">
             <div class="col-10 col-md-8 col-sm-11 col-xl-5 col-lg-6 bg-color">                
@@ -33,7 +33,7 @@
                             Ingresar
                         </button>
                     </div>
-                    <div class="form-group mx-sm-2  pt-5" th:replace="@{/fragments/thmsg} :: div"></div>
+                    <div th:replace="fragments/plantilla :: thmsg"/>
                 </form> 
             </div>
         </div>

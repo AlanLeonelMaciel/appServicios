@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body class="bodyLogin">
-    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <nav th:replace="fragments/plantilla :: nav"/>
 
     <div class="container">
         <div class="row justify-content-center pt-4 mt-3 m-1">
@@ -97,8 +97,8 @@
         </div>
     </div>
     <!-- FRAGMENT MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
-    <div th:fragment="${/fragments/thmsg} :: div"></div>
-    <script th:replace="@{/fragments/script} :: script"></script>
+    <div th:replace="fragments/plantilla :: thmsg"/>
+    <script th:replace="fragments/plantilla :: script"/>
 </body>
 
 </html>

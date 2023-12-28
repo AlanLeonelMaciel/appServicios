@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body class="bg-dark">
   <!-- FRAGMENTO NAVBAR -->
-  <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+  <nav th:replace="fragments/plantilla :: nav"/>
   <main class="container justify-content-center text-white pb-4">
     <div class="container d-flex justify-content-center">
       <form class="formulario" th:action="@{/job/modify/__${job.id}__}" method="POST" th:object="${job}">
@@ -28,12 +28,12 @@
           <button class="btn btnOrigin btn-primary mt-3 botones m-auto w-auto" type="submit">Confirmar</button>
         </div>
         <!-- FRAGMENT MENSAJES DE ERROR O ÉXITO THYMELEAF RECIBIDOS DE CONTROLADOR -->
-        <div th:fragment="${/fragments/thmsg} :: div"></div>
+        <div th:replace="fragments/plantilla :: thmsg"/>
       </form>
     </div>
 
   </main>
-  <footer th:replace="@{/fragments/footer} :: footer"></footer>
+  <footer th:replace="fragments/plantilla :: footer"/>
 </body>
 
 </html>

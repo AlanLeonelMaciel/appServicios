@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <body id="page-top" class="bg-dark">
-    <nav th:replace="@{/fragments/navbar} :: nav"></nav>
+    <nav th:replace="fragments/plantilla :: nav"/>
     <div class="container bg-dark text-white">
         <div class="container dg">
             <div class="row">
                 <div class="col-md-4 mb-4" th:each="job : ${jobs}">
-                    <div th:replace="@{/fragments/thmsg} :: div"></div>
+                    <div th:replace="fragments/plantilla :: thmsg"/>
                     <div class="card table-limit bg-dark border-card text-white">
                         <div class="card-body">
                             <h5 class="card-title d-flex justify-content-center" th:text="${job.description.toUpperCase}"></h5>
@@ -80,7 +80,7 @@
             </div>
         </div>
     </section>
-    <footer th:replace="@{/fragments/footer} :: footer"></footer>
+    <footer th:replace="fragments/plantilla :: footer"/>
 
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">

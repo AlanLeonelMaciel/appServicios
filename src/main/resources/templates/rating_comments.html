@@ -2,7 +2,7 @@
 <!-- Se incorporó el uso de thymeleaf y spring-security -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-<head th:replace="@{/fragments/head} :: head"></head>
+<head th:replace="fragments/plantilla :: head"/>
 
 <nav>
     <li class="btn text-white btn-lg mt-2"><a th:href="@{/}" class="nav-link custom-link fs-5">Inicio</a></li>
@@ -18,7 +18,7 @@
                 </div>
                 <form class="" th:action="@{/job/rating/{id}(id=${job.id})}" method="POST">
                     <div class="form-group text-center mb-2">
-                        <div th:replace="@{/fragments/thmsg} :: div"></div>
+                        <div th:replace="fragments/plantilla :: thmsg"/>
                         <h3 th:if="${ job.getCallification()!= null}" class="text-white ">Comentarios cargados. Muchas gracias!!!</h3>
                         <div th:if="${job.getCallification() == null && job.getComment() == null}">
                             <h4 class="text-white">Danos tu opinión del trabajo realizado por el proveedor</h4>
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <script th:replace="@{/fragments/script} :: script"></script>
+        <script th:replace="fragments/plantilla :: script"/>
 </body>
 
 </html>
