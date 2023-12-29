@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ServiceMatch.SM.SmApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.883 s - in com.ServiceMatch.SM.SmApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.77 s - in com.ServiceMatch.SM.SmApplicationTests

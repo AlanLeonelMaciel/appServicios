@@ -16,7 +16,12 @@
                 </div>
             </form>
         </div>
-        <div  th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'ADMINISTRADOR')"   class="d-flex flex-row">
+        <div  th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'ADMINISTRADOR')"   class="d-flex flex-row" style="
+              display: flex;
+              flex-direction: column-reverse;
+              flex-wrap: wrap;
+              justify-content: center;
+              ">
             <div th:replace="fragments/plantilla :: thmsg"/>
             <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
                 <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
