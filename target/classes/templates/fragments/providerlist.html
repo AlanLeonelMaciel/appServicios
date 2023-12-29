@@ -1,4 +1,4 @@
-<div class="container justify-content-center">
+<div th:fragment="_providerlist" class="container justify-content-center">
     <div class="text-center">
         <div class="container">
             <h4 class="text-color mt-3 mb-3">Nuestros servicios</h4>
@@ -17,7 +17,7 @@
             </form>
         </div>
         <div  th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO', 'ADMINISTRADOR')"   class="d-flex flex-row">
-            <div th:replace="@{/fragments/thmsg} :: div"></div>
+            <div th:replace="fragments/plantilla :: thmsg"/>
             <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
                 <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
                 <img class="card-img-top" id="preview" alt="Image Preview" th:src="@{/imagen/perfil/__${provider.id}__}" th:if="${provider.imagen != null}">

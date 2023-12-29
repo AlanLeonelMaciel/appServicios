@@ -2,79 +2,79 @@
 <html xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 
-<head th:replace="fragments/plantilla :: head"/>
+    <head th:replace="fragments/plantilla :: head"/>
 
-<body>
+    <body>
 
-  <nav th:replace="fragments/plantilla :: nav"/>
-
-
-  <header class="container-fluid bg-dark text-white" id="header">
-
-    <div class="container">
-      <div class="header-txt text-center">
-        <h1 class="titulo-h1 py-1 text-slide-top">TRABAJO Y CONECTIVIDAD</h1>
-        <p class="descripcion-p text-slide-left">
-          Nuestra página web conecta a usuarios con trabajadores de oficio altamente calificados. Ofrecemos
-          una
-          plataforma fácil de usar donde los usuarios pueden buscar y filtrar a través de una amplia gama de
-          categorías
-          de servicios. Además, los trabajadores de oficio pueden crear perfiles personalizados para
-          promocionarse y
-          destacarse en nuestra plataforma. <br> ¡Registrate hoy y encontrá los mejores profesionales en tu
-          área!
-        </p>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <a th:href="@{/user/registration}" th:if="${session.usuariosession == null}" id="registrarse" name="buscar" class="btnOrigin btn text-white btn-lg mt-2">
-              Registrarse
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="container-fluid p-5 section-container pt-1" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO')">
-    <section class="container-fluid section-container-dos">
-      <div th:replace="fragments/plantilla :: providerList"/>
-        <div th:replace="fragments/plantilla :: thmsg"/>
-      </div>
-    </section>
-  </main>
-
-  <section class="mapa py-1">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <p href="#" class="logo-color fs-4">
-            <span class="text-color">Match</span>
-
-            <img th:src="@{../img/alicates.png}" alt="Icono" class="icono">
-            Service
-          </p>
-
-          <h5 class="fs-1 text-white">Dónde encontrarnos</h5>
-
-        </div>
-        <div class="col-12">
-          <div class="mapa-container embed-responsive embed-responsive-16by9">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26774.937416644945!2d-68.89750030045076!3d-32.98090590902902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0af3dc0e8f1f%3A0x6b647646861df9cf!2sChacras%20de%20Coria%2C%20Mendoza!5e0!3m2!1ses-419!2sar!4v1701294838524!5m2!1ses-419!2sar"
-              class="embed-responsive-item" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer th:replace="fragments/plantilla :: footer"/>
+        <nav th:replace="fragments/plantilla :: nav"/>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script src="js/script.js"></script>
-</body>
+        <header class="container-fluid bg-dark text-white" id="header">
+
+            <div class="container">
+                <div class="header-txt text-center">
+                    <h1 class="titulo-h1 py-1 text-slide-top">TRABAJO Y CONECTIVIDAD</h1>
+                    <p class="descripcion-p text-slide-left">
+                        Nuestra página web conecta a usuarios con trabajadores de oficio altamente calificados. Ofrecemos
+                        una
+                        plataforma fácil de usar donde los usuarios pueden buscar y filtrar a través de una amplia gama de
+                        categorías
+                        de servicios. Además, los trabajadores de oficio pueden crear perfiles personalizados para
+                        promocionarse y
+                        destacarse en nuestra plataforma. <br> ¡Registrate hoy y encontrá los mejores profesionales en tu
+                        área!
+                    </p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <a th:href="@{/user/registration}" th:if="${session.usuariosession == null}" id="registrarse" name="buscar" class="btnOrigin btn text-white btn-lg mt-2">
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container-fluid p-5 section-container pt-1" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('USUARIO')">
+            <section class="container-fluid section-container-dos">
+                <div th:replace="fragments/providerlist :: _providerlist"/>
+                <div th:replace="fragments/plantilla :: thmsg"/>
+                </div>
+            </section>
+        </main>
+
+        <section class="mapa py-1">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p href="#" class="logo-color fs-4">
+                            <span class="text-color">Match</span>
+
+                            <img th:src="@{../img/alicates.png}" alt="Icono" class="icono">
+                            Service
+                        </p>
+
+                        <h5 class="fs-1 text-white">Dónde encontrarnos</h5>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="mapa-container embed-responsive embed-responsive-16by9">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26774.937416644945!2d-68.89750030045076!3d-32.98090590902902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0af3dc0e8f1f%3A0x6b647646861df9cf!2sChacras%20de%20Coria%2C%20Mendoza!5e0!3m2!1ses-419!2sar!4v1701294838524!5m2!1ses-419!2sar"
+                                class="embed-responsive-item" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="fragments/plantilla :: footer"/>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+    </body>
 
 </html>
