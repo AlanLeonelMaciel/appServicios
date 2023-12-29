@@ -168,7 +168,9 @@ select::placeholder {
     text-shadow: 1px 1px black;
 }
 
-
+#enviarLogeo {
+    width: auto;
+}
 .btnOrigin {
     background: linear-gradient(90deg,
             rgba(245, 99, 72, 1) 0%,

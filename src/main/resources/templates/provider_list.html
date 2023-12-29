@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-<head th:replace="fragments/plantilla :: head"/>
+    <head th:replace="fragments/plantilla :: head"/>
 
-<body id="page-top" class="bg-dark">
-    <nav th:replace="fragments/plantilla :: nav"/>
-    <main class="container justify-content-center">
-        <div th:replace="fragments/plantilla :: thmsg"/>
-        <div class="text-center">
-            <div class="container">
-                <h4 class="text-color mt-3 mb-3">Buscar Proveedores</h4>
-                <form th:action="@{'/user/providers/' + ${selectedSkill}}" method="get" class="mx-auto">
-                    <div class="form-group my-3 mb-2 row justify-content-center">
-                        <div class="col-4">
-                            <select name="skill" class="bg-dark text-white form-select form-select-md">
-                                <option value="">Seleccionar oficio</option>
-                                <option th:each="skill : ${skills}" th:value="${skill.name}" th:text="${skill.name}">
-                                </option>
-                            </select>
+    <body id="page-top" class="bg-dark">
+        <nav th:replace="fragments/plantilla :: nav"/>
+        <main class="container justify-content-center">
+            <div th:replace="fragments/plantilla :: thmsg"/>
+            <div class="text-center">
+                <div class="container">
+                    <h4 class="text-color mt-3 mb-3">Buscar Proveedores</h4>
+                    <form th:action="@{'/user/providers/' + ${selectedSkill}}" method="get" class="mx-auto">
+                        <div class="form-group my-3 mb-2 row justify-content-center">
+                            <div class="col-4">
+                                <select name="skill" class="bg-dark text-white form-select form-select-md">
+                                    <option value="">Seleccionar oficio</option>
+                                    <option th:each="skill : ${skills}" th:value="${skill.name}" th:text="${skill.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-1 pe-1 ps-1">
+                                <button type="submit" class="btn float-start btnbuscar">Buscar</button>
+                            </div>
                         </div>
-                        <div class="col-1 pe-1 ps-1">
-                            <button type="submit" class="btn float-start btnbuscar">Buscar</button>
+                    </form>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
+                        <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
+                        <img class="card-img-top" id="preview" alt="Image Preview"
+                             th:src="@{/imagen/perfil/__${provider.id}__}" th:if="${provider.imagen != null}">
+                        <img class="card-img-top" th:src="@{/img/no-profile.png}" th:if="${provider.imagen == null}">
+                        <div class="card-body justify-content-center">
+                            <h5 th:text="${provider.name}" class="card-title text-white"></h5>
+                            <div th:each="skill : ${skills}">
+                                <p th:if="${#lists.contains(provider.skills, skill)}" th:text="${skill.name}"
+                                   class="card-text"></p>
+                            </div>
+                            <a th:href="@{/user/providers/details/{id}(id=${provider.id})}" class="btn btn-dark mx-auto">Ver
+                                Proveedor</a>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="card bg-dark text-white cardIndex text-center" th:each="provider : ${providers}">
-                    <input th:value="${provider.id}" name="id" hidden method="get" th:href="@{/}">
-                    <img class="card-img-top" id="preview" alt="Image Preview"
-                        th:src="@{/imagen/perfil/__${provider.id}__}" th:if="${provider.imagen != null}">
-                    <img class="card-img-top" th:src="@{/img/no-profile.png}" th:if="${provider.imagen == null}">
-                    <div class="card-body justify-content-center">
-                        <h5 th:text="${provider.name}" class="card-title text-white"></h5>
-                        <div th:each="skill : ${skills}">
-                            <p th:if="${#lists.contains(provider.skills, skill)}" th:text="${skill.name}"
-                                class="card-text"></p>
-                        </div>
-                        <a th:href="@{/user/providers/details/{id}(id=${provider.id})}" class="btn btn-dark mx-auto">Ver
-                            Proveedor</a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div th:replace="fragments/plantilla :: paginacion"/>
-    </main>
-    <footer th:replace="fragments/plantilla :: footer"/>
-    <script th:replace="fragments/plantilla :: script"/>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+            <!-- Agrega la paginación -->
+        </main>
+        <footer th:replace="fragments/plantilla :: footer"/>
+        <script th:replace="fragments/plantilla :: script"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>
-</body>
+    </body>
 
 </html>
