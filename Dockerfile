@@ -12,4 +12,4 @@ RUN chmod +x /app/wait-for-it.sh
 EXPOSE 8080
 
 # Comando para esperar a que la base de datos esté disponible y luego ejecutar la aplicación
-CMD ["/app/wait-for-it.sh", "monorail.proxy.rlwy.net:56078", "--timeout=30", "--", "java", "-jar", "/app/docker-spring-boot.jar"]
+CMD ["/app/wait-for-it.sh", "buitnmd3o4sbbbgkhipt-mysql.services.clever-cloud.com:3306/buitnmd3o4sbbbgkhipt", "--timeout=30", "--", "java", "-jar", "/app/docker-spring-boot.jar"]
